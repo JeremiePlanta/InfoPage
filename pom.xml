@@ -12,10 +12,13 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
+
   <properties>
+    <main.class>org.example.InfoWebPageApplication</main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
   </properties>
 
   <dependencies>
@@ -34,6 +37,16 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.35</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jexxa.addend</groupId>
+      <artifactId>Addend</artifactId>
+      <version>1.1.0</version>
     </dependency>
   </dependencies>
 
@@ -61,6 +74,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+          <configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>${main.class}</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -89,6 +110,75 @@
           <source>10</source>
           <target>10</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>${main.class}</mainClass>
+                </transformer>
+              </transformers>
+
+              <finalName>${project.artifactId}-jar-with-dependencies</finalName>
+
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>module-info.class</exclude>
+                    <exclude>about.html</exclude>
+                    <exclude>META-INF/MANIFEST.MF</exclude>
+                    <exclude>META-INF/*.txt</exclude>
+                    <exclude>META-INF/NOTICE</exclude>
+                    <exclude>META-INF/LICENSE</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>io.jexxa:jexxa-core</artifact>
+                  <excludes>
+                    <exclude>*.properties</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>io.jexxa.addendj:*</artifact>
+                  <excludes>
+                    <exclude>**/**</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>io.jexxa:jexxa-core</artifact>
+                  <excludes>
+                    <exclude>*.properties</exclude>
+                  </excludes>
+                </filter>
+
+                <filter> <!-- filter aspectj related duplications -->
+                  <artifact>org.aspectj:aspectjtools</artifact>
+                  <excludes>
+                    <exclude>org/aspectj/internal/**</exclude>
+                    <exclude>org/aspectj/lang/**</exclude>
+                    <exclude>org/aspectj/runtime/**</exclude>
+                  </excludes>
+                </filter>
+
+                <filter>
+                  <artifact>org.eclipse.jetty:*</artifact>
+                  <excludes>
+                    <exclude>**/encoding.properties</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
