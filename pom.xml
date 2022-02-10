@@ -40,11 +40,6 @@
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.35</version>
     </dependency>
-    <dependency>
-      <groupId>io.jexxa.addend</groupId>
-      <artifactId>Addend</artifactId>
-      <version>1.1.0</version>
-    </dependency>
   </dependencies>
 
   <build>
