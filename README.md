@@ -1,4 +1,4 @@
-# InfoWebPage version 0.1  WORK IN PROGRESS
+# InfoWebPage version 1.0  WORK IN PROGRESS
 ### Author: Jérémie Planta                                                                                          
 Source: https://github.com/JeremiePlanta/InfoWebPage/
 
