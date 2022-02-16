@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>InfoWebPage</artifactId>
+  <artifactId>InfoPage</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>InfoWebPage</name>
-  <url>https://github.com/JeremiePlanta/InfoWebPage</url>
+  <name>InfoPage</name>
+  <url>https://github.com/JeremiePlanta/InfoPage</url>
   <developers>
     <developer>
       <name>Jérémie Planta</name>
@@ -17,7 +17,7 @@
   </developers>
 
   <properties>
-    <main.class>org.example.InfoWebPageApplication</main.class>
+    <main.class>org.example.InfoPageApplication</main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- target/compiler configuration -->
