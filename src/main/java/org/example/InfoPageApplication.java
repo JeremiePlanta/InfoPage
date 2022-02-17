@@ -12,6 +12,10 @@ public final class InfoPageApplication
         var jexxaMain = new JexxaMain("InfoPage");
 
         jexxaMain
+
+                // Bind a REST adapter to the BoundedContext
+                .bind(RESTfulRPCAdapter.class).to(jexxaMain.getBoundedContext())
+
                 // Bind a REST adapter to class HelloJexxa and expose its methods
                 .bind(RESTfulRPCAdapter.class).to(InfoPageApplication.class)
 
