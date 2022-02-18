@@ -113,12 +113,25 @@ function updateInfoPage(){
             writeInformation("infoPageHeader", "Project Name:", data[0].projectName);
             writeInformation("infoPageStatusContent", "Last status check:", new Date(data[1].timestamp.seconds *1000 + data[1].timestamp.nanos /1000000 ));
             writeInformation("infoPageStatusContent", "Status message:", data[1].statusMessage);
-            writeInformation("infoPageStatusContent", "Uptime:", data[3]);
+            writeInformation("infoPageStatusContent", "Uptime:", secondsToHms(data[3].seconds + data[3].nanos /1000000000));
             writeInformation("infoPageConfigContent", "Jexxa version:", data[2].version);
 
       }).catch(function(error){
             console.log(error);
       });
+}
+function secondsToHms(r) {
+      r = Number(r);
+      let d = Math.floor(r / 3600 / 24);
+      let h = Math.floor(r / 3600);
+      let m = Math.floor(r % 3600 / 60);
+      let s = Math.floor(r % 3600 % 60);
+
+      let dDisplay = d > 0 ? d + (d === 1 ? " Day, " : " Days, ") : "";
+      let hDisplay = h > 0 ? h + (h === 1 ? " hour, " : " hours, ") : "";
+      let mDisplay = m > 0 ? m + (m === 1 ? " minute, " : " minutes, ") : "";
+      let sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds") : "";
+      return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
 window.onload = function() {
