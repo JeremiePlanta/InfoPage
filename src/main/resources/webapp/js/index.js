@@ -1,6 +1,6 @@
-//const URL =  window.location.protocol + '//' + window.location.host +  '/BoundedContext/';
+const URL =  window.location.protocol + '//' + window.location.host +  '/BoundedContext/';
 
-const URL =  'http://lin587.dillinger.de:7000/BoundedContext/'
+//const URL =  'http://lin587.dillinger.de:7000/BoundedContext/'
 
 function createInfoPageDiv(){
     
@@ -111,6 +111,7 @@ function updateInfoPage(){
 
 
             writeInformation("infoPageHeader", "Project Name:", data[0].projectName);
+            writeInformation("infoPageStatusContent", "Context Version:", data[0].version);
             writeInformation("infoPageStatusContent", "Last status check:", new Date(data[1].timestamp.seconds *1000 + data[1].timestamp.nanos /1000000 ));
             writeInformation("infoPageStatusContent", "Status message:", data[1].statusMessage);
             writeInformation("infoPageStatusContent", "Uptime:", secondsToHms(data[3].seconds + data[3].nanos /1000000000));
