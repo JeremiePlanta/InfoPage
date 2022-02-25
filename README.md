@@ -4,7 +4,11 @@ Source: https://github.com/JeremiePlanta/InfoPage/
 
 InfoPage ist eine mit dem Jexxa Framework entwickelte applikation die eine Webseite zur verfügung stellt in der Informationen zur Konfiguration von Anwendungen
 zur verfügung gestellt werden(z.B Versionsnummer).
-          
+ 
+### Anforderungen
+
+* Entwicklungsumgebung mit Maven Support (z.B. IntelliJ)
+         
 ## Compilieren und Starten der Anwendung
 ```
 mvn clean install
